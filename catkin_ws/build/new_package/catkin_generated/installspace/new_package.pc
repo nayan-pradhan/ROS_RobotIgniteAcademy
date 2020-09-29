@@ -1,8 +1,0 @@
-prefix=/home/user/catkin_ws/install
-
-Name: new_package
-Description: Description of new_package
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/user/catkin_ws/install/lib 
-Requires: 
