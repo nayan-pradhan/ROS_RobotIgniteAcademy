@@ -7,5 +7,10 @@ rospy.init_node('bb8_move_custom_service_client_server_node')
 rospy.wait_for_service('/move_bb8_in_circle_custom')
 move_bb8_custom_service_client_server = rospy.ServiceProxy('/move_bb8_in_circle_custom', MyCustomServiceMessage)
 
-result = move_bb8_custom_service_client_server(MyCustomServiceMessageRequest)
+my_custom_service_msg_request_object = MyCustomServiceMessageRequest()
+my_custom_service_msg_request_object.duration = 10
+
+result = move_bb8_custom_service_client_server(my_custom_service_msg_request_object)
 print result
+
+# create a subscriber to get my message
