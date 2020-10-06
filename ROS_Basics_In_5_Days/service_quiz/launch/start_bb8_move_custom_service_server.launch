@@ -1,0 +1,11 @@
+<launch>
+
+<node
+    pkg = "service_quiz"
+    type = "bb8_move_custom_service_server.py"
+    name = "custom_service_server_node"
+    output = "screen"
+>
+</node>
+
+</launch>
