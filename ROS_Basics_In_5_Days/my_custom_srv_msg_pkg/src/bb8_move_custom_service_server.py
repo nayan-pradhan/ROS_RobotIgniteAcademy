@@ -1,13 +1,13 @@
 #! /usr/bin/env python
 
 import rospy
+from geometry_msgs.msg import Twist
 from my_custom_srv_msg_pkg.srv import MyCustomServiceMessage, MyCustomServiceMessageResponse
 from time import sleep
-from geometry_msgs.msg import Twist
 
 def call_back(request):
     my_response = MyCustomServiceMessageResponse()
-    countdown = request.duration
+    countdown = my_response.duration
     if (countdown < 0):
         my_response.success = False
         return my_response
