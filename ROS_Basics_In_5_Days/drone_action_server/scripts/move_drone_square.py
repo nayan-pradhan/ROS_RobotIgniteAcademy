@@ -2,7 +2,7 @@
 
 import actionlib
 import rospy
-import actionlib
+import time
 
 from actionlib.msg import TestFeedback, TestResult, TestAction
 from geometry_msgs.msg import Twist
@@ -15,7 +15,7 @@ class MoveDroneSquare(object):
     _result = TestResult()
 
     def __init__(self):
-        self._as = actionlib.SimpleActionServer("move_drone_square_action_server", self.goal_callback, TestAction, False)
+        self._as = actionlib.SimpleActionServer("move_drone_square_action_server", TestAction, self.goal_callback, False)
         self._as.start()
         self.ctrl_c = False
         self.rate = rospy.Rate(10)
