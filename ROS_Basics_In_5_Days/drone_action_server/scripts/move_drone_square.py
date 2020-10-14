@@ -76,13 +76,27 @@ class MoveDroneSquare(object):
                 success = False
                 break
 
+            # to move
             self.forward_drone()
             time.sleep(sideSeconds)
             self.turn_drone()
             time.sleep(sideSeconds)
 
-            self._feedback_feedback = i
+            self._feedback.feedback = i
+            self._as.publish_feedback(self.feedback)
+            r.sleep
 
+        if success:
+            self._result.result = (sideSeconds*4) + (turnSeconds*4)
+            rospy.loginfo("The total seconds it took the drone to perform the square was %i" % self._result.result)
+            self._as.set_succeeded(self._result)
+
+            self.stop_drone()
+            for i in range(1,4):
+                self._pub_land.publish(self._land_msg)
+                rospy.loginfo("Landing!!!")
+                time.sleep(1)
+                i += 1
 
 if __name__ = "__maim__":
     rospy.init_node('move_drone_square_node')
