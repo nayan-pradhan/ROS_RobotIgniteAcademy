@@ -56,7 +56,7 @@ class MoveDroneSquare(object):
         self.move_dron = Twist()
         self._pub_takeoff = rospy.Publisher('/drone/takeoff', Empty, queue_size = 1)
         self._takeoff_msg = Empty()
-        self._pub_land = rospy.Publisher('/drone/land', Empty. queue_size = 1)
+        self._pub_land = rospy.Publisher('/drone/land', Empty, queue_size = 1)
         self._land_msg = Empty()
 
         # make the drone takeofff
@@ -98,7 +98,7 @@ class MoveDroneSquare(object):
                 time.sleep(1)
                 i += 1
 
-if __name__ = "__maim__":
+if __name__ == "__main__":
     rospy.init_node('move_drone_square_node')
     MoveDroneSquare()
     rospy.spin()
