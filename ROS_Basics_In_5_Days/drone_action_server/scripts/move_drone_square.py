@@ -44,8 +44,8 @@ class MoveDroneSquare(object):
 
     def forward_drone(self):
         rospy.loginfo("Moving forward!")
-        self.move_dron.linear.x = 1
-        self.move_dron.angular.z = 0
+        self.move_drone.linear.x = 1
+        self.move_drone.angular.z = 0
         self.publish_once_in_cmd_vel(move_drone)
     
     def goal_callback(self, goal):
@@ -53,7 +53,7 @@ class MoveDroneSquare(object):
         success = True 
 
         self._pub_cmd_vel = rospy.Publisher('/cmd_vel', Twist, queue_size = 1)
-        self.move_dron = Twist()
+        self.move_drone = Twist()
         self._pub_takeoff = rospy.Publisher('/drone/takeoff', Empty, queue_size = 1)
         self._takeoff_msg = Empty()
         self._pub_land = rospy.Publisher('/drone/land', Empty, queue_size = 1)
