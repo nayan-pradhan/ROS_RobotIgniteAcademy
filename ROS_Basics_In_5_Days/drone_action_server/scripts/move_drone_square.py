@@ -40,13 +40,13 @@ class MoveDroneSquare(object):
         rospy.loginfo("Turning!")
         self._move_drone.linear.x = 0
         self._move_drone.angular.z = 1
-        self.publish_once_in_cmd_vel(_move_drone)
+        self.publish_once_in_cmd_vel(self._move_drone)
 
     def forward_drone(self):
         rospy.loginfo("Moving forward!")
         self._move_drone.linear.x = 1
         self._move_drone.angular.z = 0
-        self.publish_once_in_cmd_vel(_move_drone)
+        self.publish_once_in_cmd_vel(self._move_drone)
     
     def goal_callback(self, goal):
         r = rospy.Rate(1)
@@ -83,7 +83,7 @@ class MoveDroneSquare(object):
             time.sleep(sideSeconds)
 
             self._feedback.feedback = i
-            self._as.publish_feedback(self.feedback)
+            self._as.publish_feedback(self._feedback)
             r.sleep
 
         if success:
