@@ -32,28 +32,28 @@ class MoveDroneSquare(object):
     
     def stop_drone(self):
         rospy.loginfo("Stopping drone!")
-        self.move_drone.linear.x = 0
-        self.move_drone.angular.z = 0
-        self.publish_once_in_cmd_vel(self.move_drone)
+        self._move_drone.linear.x = 0
+        self._move_drone.angular.z = 0
+        self.publish_once_in_cmd_vel(self._move_drone)
 
     def turn_drone(self):
         rospy.loginfo("Turning!")
-        self.move_drone.linear.x = 0
-        self.move_drone.angualr.z = 1
-        self.publish_once_in_cmd_vel(move_drone)
+        self._move_drone.linear.x = 0
+        self._move_drone.angular.z = 1
+        self.publish_once_in_cmd_vel(_move_drone)
 
     def forward_drone(self):
         rospy.loginfo("Moving forward!")
-        self.move_drone.linear.x = 1
-        self.move_drone.angular.z = 0
-        self.publish_once_in_cmd_vel(move_drone)
+        self._move_drone.linear.x = 1
+        self._move_drone.angular.z = 0
+        self.publish_once_in_cmd_vel(_move_drone)
     
     def goal_callback(self, goal):
         r = rospy.Rate(1)
         success = True 
 
         self._pub_cmd_vel = rospy.Publisher('/cmd_vel', Twist, queue_size = 1)
-        self.move_drone = Twist()
+        self._move_drone = Twist()
         self._pub_takeoff = rospy.Publisher('/drone/takeoff', Empty, queue_size = 1)
         self._takeoff_msg = Empty()
         self._pub_land = rospy.Publisher('/drone/land', Empty, queue_size = 1)
