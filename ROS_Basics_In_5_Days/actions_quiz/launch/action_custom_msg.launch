@@ -1,0 +1,8 @@
+<launch>
+<node
+    pkg = "action_quiz"
+    type = "action_custom_msg_server.py"
+    name = "action_custom_msg_node"
+    output = "screen"
+/>
+</launch>
