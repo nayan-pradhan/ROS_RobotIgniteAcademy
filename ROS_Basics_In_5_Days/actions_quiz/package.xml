@@ -1,10 +1,14 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>action_quiz</name>
+  <name>actions_quiz</name>
   <version>0.0.0</version>
   <description>The package</description>
   <maintainer email="user@todo.todo">user</maintainer>
   <license>TODO</license>
+
+  <!-- <build_depend>actions_quiz</build_depend> -->
+  <build_export_depend>nav_msgs</build_export_depend>
+  <exec_depend>nav_msgs</exec_depend>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>actionlib</build_depend>

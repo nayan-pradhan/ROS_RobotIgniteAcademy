@@ -4,19 +4,20 @@ import actionlib
 import rospy
 import time
 
-#from actionlib.msg import TestFeedback, TestResult, TestAction
-from action_quiz.msg import CustomActionFeedback, 
+# from actionlib.msg import TestFeedback, TestResult, TestAction
+# from ardrone_as.msg import ArdroneAction, ArdroneGoal, ArdroneResult, ArdroneFeedback
+from actions_quiz.action import CustomActionFeedback, CustomActionResult, CustomActionAction
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Empty
 
 class MoveDroneSquare(object):
 
     # create message obj that are used to publish feedback and result
-    _feedback = TestFeedback()
-    _result = TestResult()
+    _feedback = CustomActionFeedback()
+    _result = CustomActionResult()
 
     def __init__(self):
-        self._as = actionlib.SimpleActionServer("action_custom_msg", TestAction, self.goal_callback, False)
+        self._as = actionlib.SimpleActionServer("action_custom_msg_as", CustomActionAction, self.goal_callback, False)
         self._as.start()
         self.ctrl_c = False
         self.rate = rospy.Rate(10)

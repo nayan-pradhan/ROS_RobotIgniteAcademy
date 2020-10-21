@@ -10,7 +10,7 @@ project(actions_quiz)
 find_package(catkin REQUIRED COMPONENTS
   rospy
   actionlib_msgs
-  action_quiz
+  actions_quiz
 )
 
 ## System dependencies are found with CMake's conventions
@@ -72,7 +72,7 @@ generate_messages(
   DEPENDENCIES
   actionlib_msgs
   std_msgs  # Or other packages containing msgs
-  action_quiz
+  actions_quiz
 )
 
 ################################################
@@ -107,7 +107,10 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES actions_quiz
-	CATKIN_DEPENDS rospy
+	CATKIN_DEPENDS 
+	rospy
+	actionlib
+	actionlib_msgs
 #  DEPENDS system_lib
 )
 

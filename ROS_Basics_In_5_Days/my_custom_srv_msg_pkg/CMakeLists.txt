@@ -30,7 +30,8 @@ generate_messages(
 ## State here all the packages that will be needed by someone that executes something from your package.
 ## All the packages stated here must be in the package.xml as exec_depend
 catkin_package(
-  CATKIN_DEPENDS rospy
+  CATKIN_DEPENDS 
+  rospy
 )
 
 
