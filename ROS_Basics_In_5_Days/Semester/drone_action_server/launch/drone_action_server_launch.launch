@@ -1,0 +1,9 @@
+<launch>
+<node
+    pkg = "drone_action_server"
+    type = "move_drone_square.py"
+    name = "move_drone_square_node"
+    output = "screen"
+>
+</node>
+</launch>
