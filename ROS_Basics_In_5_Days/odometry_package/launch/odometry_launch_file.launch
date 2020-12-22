@@ -1,4 +1,0 @@
-<launch>
-    <node pkg = "odometry_package" type = "odo.py" name = "odometry_launch" output = "screen">
-    </node>
-</launch>
