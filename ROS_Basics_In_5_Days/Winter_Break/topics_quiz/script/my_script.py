@@ -8,7 +8,7 @@ rospy.init_node("topics_quiz_node") # initialize node
 
 move = Twist() # creating twist object
 
-lin_vel = 0.0
+lin_vel = 0.4
 ang_vel = 0.4
 
 def callback(msg):
