@@ -1,7 +1,7 @@
 <launch>
     <node
         pkg = "unit_6_move_bb8"
-        name = "node_unit_6_bb8"
+        name = "node_unit_6_bb8_server"
         type = "bb8_move_in_circle_service_server.py"
         output = "screen"
     >

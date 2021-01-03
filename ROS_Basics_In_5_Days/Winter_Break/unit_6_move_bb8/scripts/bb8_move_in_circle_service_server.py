@@ -11,7 +11,7 @@ def callback(request):
     pub.publish(move)
     return EmptyResponse()
 
-rospy.init_node("node_unit_6_bb8")
+rospy.init_node("node_unit_6_bb8_server")
 my_service = rospy.Service("/move_bb8_in_circle", Empty, callback)
 pub = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
 move = Twist()
