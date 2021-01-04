@@ -6,7 +6,7 @@ from geometry_msgs.msg import Twist
 
 def callback(request):
     dist = request.side * 2 # times 2 just so that the square is not too small
-    rep = request.repetition
+    rep = request.repetitions
     response = BB8CustomServiceMessageResponse()
 
     if (dist <= 0 or rep <= 0):
