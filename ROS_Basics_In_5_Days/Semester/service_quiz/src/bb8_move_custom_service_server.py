@@ -7,7 +7,7 @@ from time import sleep
 
 def call_back(request):
     my_response = BB8CustomServiceMessageResponse()
-    how_many_repeat = my_response.repetitions
+    how_many_repeat = request.repetitions
 
     if (side <= 0 or repetitions <= 0):
         my_response.success = False
@@ -15,7 +15,7 @@ def call_back(request):
 
     while (how_many_repeat != 0):
         side_number = 0
-        size_of_square = 2 * my_response.side
+        size_of_square = 2 * request.side
         while (side_number < 4):
             move.linear.x = 0.5
             sleep(how_many_repeat)
@@ -33,7 +33,7 @@ def call_back(request):
     return my_response
 
 rospy.init_node('/custom_service_server_node')
-my_service = rospy.ServiceProxy('/move_bb8_in_square_custom', BB8CustomServiceMessage, call_back)
+my_service = rospy.Service('/move_bb8_in_square_custom', BB8CustomServiceMessage, call_back)
 move = Twist()
 pub = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
 rospy.spin()
