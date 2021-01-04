@@ -1,4 +1,4 @@
-#! /usr/dev/env python
+#! /usr/bin/env python
 
 import rospy
 from services_quiz.srv import BB8CustomServiceMessage, BB8CustomServiceMessageResponse
