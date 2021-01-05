@@ -21,12 +21,10 @@ def callback(request):
             # print("j=",j)
             move_straight()
             rospy.sleep(dist)
-            # rospy.sleep(1) 
 
             turn_right()   
-            rospy.sleep(3.365)
-            # stop()
-            # rospy.sleep(1)     
+            rospy.sleep(3.355)
+    
             j = j + 1
         i = i + 1
         print("number of Repetations complete:", i)
