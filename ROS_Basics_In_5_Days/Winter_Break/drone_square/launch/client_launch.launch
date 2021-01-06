@@ -1,0 +1,10 @@
+<launch>
+<include file="$(find drone_square)/launch/server_launch.launch"/>
+	<node
+		pkg = "drone_square"
+		type = "drone_square_action_client.py"
+		name = "node_drone_square_action_client"
+		output = "screen"
+    >
+    </node>
+</launch>
