@@ -20,7 +20,7 @@ class DroneClass(object):
     def takeoff_func(self):
         rospy.loginfo("Taking off ...")
         self.pub_takeoff.publish(self.takeoff)
-        rospy.sleep(3)
+        rospy.sleep(5)
         rospy.loginfo("Took off!")
     
     def stop_func(self):
@@ -62,20 +62,18 @@ class DroneClass(object):
         # angular z controls CCV(+1) and CV (-1)
         self.move.angular.z = -0.5
         self.pub_move.publish(self.move)
-        rospy.sleep(3)
+        rospy.sleep(3.355)
         rospy.loginfo("Turned right!")
     
     def land_func(self):
         rospy.loginfo("Landing ...")
         self.pub_land.publish(self.land)
-        rospy.sleep(3)
+        rospy.sleep(5)
         rospy.loginfo("Landed!")
 
     def goal_callback(self, goal):
 
         success = True 
-
-        print("IN CALLBACK")
 
         # create publishers
         self.pub_move = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
@@ -120,7 +118,7 @@ class DroneClass(object):
         if success:
             self._result.result = stop_time - start_time
             self._as.set_succeeded(self._result)
-            rospy.loginfo("Success")
+            rospy.loginfo("Success from server")
 
 if __name__ == "__main__":
     rospy.init_node("node_drone_square_action_server")
