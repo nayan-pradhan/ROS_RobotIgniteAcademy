@@ -24,7 +24,7 @@ def callback(request):
     return response
 
 rospy.init_node("node_bb8_move_custom_service_server")
-my_service = rospy.Service("/move_bb8_in_circle_custom", Empty, callback)
+my_service = rospy.Service("/move_bb8_in_circle_custom", MyCustomServiceMessage, callback)
 pub = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
 move = Twist()
 rospy.spin()

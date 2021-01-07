@@ -4,7 +4,7 @@ import rospy
 import random
 import time
 
-rospy.init_node("log_demo", log_level = rospy.DEBUG)
+rospy.init_node("node_log_demo", log_level = rospy.DEBUG)
 rate = rospy.Rate(0.5)
 
 #rospy.loginfo_throttle(120, "DeathStars Minute info: "+str(time.time()))
