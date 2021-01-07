@@ -1,0 +1,9 @@
+<launch>
+    <node
+        pkg = "logger_example_pkg"
+        name = "node_log_demo"
+        type = "logger_script.py"
+        output = "screen"
+    >
+    </node>
+</launch>
