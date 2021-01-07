@@ -1,0 +1,9 @@
+<launch>
+    <node
+        pkg = "actions_quiz"
+        type = "action_quiz_script.py"
+        name = "node_action_quiz_script"
+        output = "screen"
+    >
+    </node>
+</launch>
