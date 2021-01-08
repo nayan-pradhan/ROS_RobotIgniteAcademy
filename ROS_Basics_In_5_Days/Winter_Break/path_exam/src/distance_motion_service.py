@@ -44,7 +44,7 @@ class Drone_Class:
         # get init pose
         self.init_pose = self.get_pose()
         rospy.sleep(1)
-        print(self.init_pose)
+        # print(self.init_pose)
 
         # move
         self.move_forward_func()
@@ -54,7 +54,7 @@ class Drone_Class:
         # get final pose
         self.final_pose = self.get_pose() 
         rospy.sleep(1)
-        print(self.final_pose)
+        # print(self.final_pose)
 
         # land
         self.land_func()

@@ -1,0 +1,9 @@
+<launch>
+    <node
+        pkg = "path_exam"
+        type = "distance_motion_service.py"
+        name = "node_distance_motion_service"
+        output = "screen"
+    >
+    </node>
+</launch>
