@@ -1,5 +1,4 @@
 <launch>
-    <include file="$(find turtlebot_maze)/launch/turtlebot_maze_clients_launch.launch"/>
     <node
         pkg = "turtlebot_maze"
         type = "turtlebot_maze_action_server.py"

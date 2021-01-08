@@ -43,7 +43,7 @@ class Maze(object):
         self._as = actionlib.SimpleActionServer("turtlebot_maze_action_server", MyTurtlebotMazeActionAction, self.as_goal_callback, False)
         self._as.start()
 
-        # subscriber
+        # publisher
         self.pub = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
         while self.pub.get_num_connections() < 1:
             sleep(1)
