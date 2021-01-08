@@ -9,7 +9,7 @@ project(path_exam)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   rospy
-#   geometry_msgs
+  geometry_msgs
   std_msgs
   actionlib_msgs
 )
@@ -70,7 +70,7 @@ add_action_files(
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
   DEPENDENCIES
-#   geometry_msgs
+  geometry_msgs
 #   message_generation
   std_msgs  # Or other packages containing msgs
   actionlib_msgs

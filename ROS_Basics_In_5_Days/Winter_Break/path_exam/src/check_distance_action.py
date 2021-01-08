@@ -52,8 +52,8 @@ class Drone_Class:
             quit()
         self._result.result_list = []
         for i in xrange(0, 20):
-            self.x_coordinate = self.get_pose()
-            self._result.result_list.append(self.x_coordinate)
+            self.pose_val = self.get_pose()
+            self._result.result_list.append(self.pose_val)
             rospy.sleep(1)
         # print("Arr: ",  self._result.result_list)
         self._feedback = Empty()
@@ -83,14 +83,14 @@ class Drone_Class:
         self.stop_func()
 
         # get final pose
-        self.final_pose = self.get_pose() 
+        self.final_pose = self.get_pose()
         rospy.sleep(1)
         # print(self.final_pose)
 
         # land
         self.land_func()
         
-        diff = self.final_pose - self.init_pose 
+        diff = self.final_pose.position.x - self.init_pose.position.x
 
         if diff != 0:
             self.response.message = ("The drone has moved %f meteres" %diff)
@@ -103,7 +103,7 @@ class Drone_Class:
         self.pose_msg = msg
 
     def get_pose(self):
-        return self.pose_msg.position.x
+        return self.pose_msg
 
     ###
 
