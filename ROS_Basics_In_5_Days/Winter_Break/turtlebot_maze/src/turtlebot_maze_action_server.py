@@ -1,13 +1,21 @@
 #! /usr/bin/env python
 
 import rospy
-from std_srvs.srv import Trigger, TriggerResponse
+import actionlib
+from turtlebot_maze.msg import MyTurtlebotMazeActionFeedback, MyTurtlebotMazeActionAction, MyTurtlebotMazeActionResult
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 from sensor_msgs.msg import LaserScan 
 from time import sleep
+from std_srvs.srv import Trigger, TriggerResponse
+
+reached_end_time = False
+reached_end_maze = False
 
 class Maze(object):
+
+    _feedback = MyTurtlebotMazeActionFeedback()
+    _result = MyTurtlebotMazeActionResult()
 
     def __init__(self):
         
@@ -21,8 +29,16 @@ class Maze(object):
         self.my_laser_sub = rospy.Subscriber("/kobuki/laser/scan", LaserScan, self.callback_laser)
         self.laser_msg = LaserScan()
 
+        global init_position 
+        init_position = self.get_odom()
+        print("init pos = ", init_position)
+
         # service init
         self.my_service = rospy.Service("turtlebot_maze_service_server", Trigger, self.callback_serv)
+
+        # action init
+        self._as = actionlib.SimpleActionServer("turtlebot_maze_action_server", MyTurtlebotMazeActionAction, self.as_goal_callback, False)
+        self._as.start()
 
         # subscriber
         self.pub = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
@@ -30,13 +46,32 @@ class Maze(object):
             sleep(1)
         self.move = Twist()
 
+    def as_goal_callback(self, goal):
+        new_position = self.get_odom()
+        print("pos = ", new_position)
+        current_time = 0
+        total_time_run = 20
+        self.reached_end_time = False
+
+        while current_time < total_time_run:
+
+            current_time += 1
+            sleep(1)
+
+        if current_time == total_time_run:
+            self.reached_end_time = True
+            if (not self.reached_end_maze):
+                rospy.loginfo("TIME UP. FAILED")
+                
+
     def callback_serv(self, request):
+        print("REACHED END TIME = ", self.reached_end_time)
         self.response = TriggerResponse()
         self.response.success = False
         self.response.message = "Not successfull" 
-        reached_end = False
+        self.reached_end_maze = False
         
-        while not reached_end:
+        while (not self.reached_end_maze) or (not self.reached_end_time):
             front = self.get_laser_front()
             # back = self.get_laser_back()
             left = self.get_laser_left()
@@ -54,7 +89,7 @@ class Maze(object):
                 print("left = ", left)
                 print("right = ", right)
                 if ((front > 6 and left > 6 and right > 6) or (front > 6 and left > 6) or (left > 6 and right > 6) or (front > 6 and right > 6)):
-                    reached_end = True 
+                    self.reached_end_maze = True 
                     break
                 self.move_forward_fast()
             
@@ -97,7 +132,7 @@ class Maze(object):
                 print("right = ", right)
                 self.back_up()
                 
-        if reached_end:
+        if self.reached_end_maze:
             self.stop_moving()
             rospy.loginfo("END OF MAZE REACHED")
             self.response.success = True
@@ -177,6 +212,6 @@ class Maze(object):
         return self.laser_msg.ranges[719]
 
 if __name__ == "__main__":
-    rospy.init_node("node_turtlebot_maze_service_server")
+    rospy.init_node("node_turtlebot_maze_action_server")
     Maze()
     rospy.spin()

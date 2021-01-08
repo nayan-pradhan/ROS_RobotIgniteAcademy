@@ -14,20 +14,17 @@ class LaserSub(object):
         self.my_laser_sub = rospy.Subscriber("/kobuki/laser/scan", LaserScan, callback_laser)
 
 def callback_odom(msg):
-    for i in xrange(1, 3):
-        rospy.loginfo("Pose:")
-        print msg.pose
-        rospy.sleep(1)
+    rospy.loginfo("Pose:")
+    print msg.pose
+    rospy.sleep(0.5)
 
 def callback_laser(msg):
-        for i in xrange(1, 3):
-            rospy.loginfo("Laser:")
-            print msg.ranges[360]
-            rospy.sleep(1)
+        rospy.loginfo("Laser:")
+        print msg.ranges[360]
+        rospy.sleep(1)
 
 if __name__ == "__main__":
     rospy.init_node("node_turtlebot_maze_sub_pub")
     OdomSub()
-    rospy.sleep(1)
     LaserSub()
     rospy.spin()
