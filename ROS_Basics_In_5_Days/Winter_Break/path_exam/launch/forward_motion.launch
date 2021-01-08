@@ -1,0 +1,9 @@
+<launch>
+    <node
+        pkg = "path_exam"
+        type = "forward_motion.py"
+        name = "node_forward_motion"
+        output = "screen"
+    >
+    </node>
+</launch>
