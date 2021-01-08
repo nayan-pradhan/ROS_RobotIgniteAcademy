@@ -53,7 +53,7 @@ class Maze(object):
                 print("front = ", front)
                 print("left = ", left)
                 print("right = ", right)
-                if (front > 6 and left > 6 and right > 6):
+                if ((front > 6 and left > 6 and right > 6) or (front > 6 and left > 6) or (left > 6 and right > 6) or (front > 6 and right > 6)):
                     reached_end = True 
                     break
                 self.move_forward_fast()
@@ -131,7 +131,7 @@ class Maze(object):
 
     def move_forward_fast(self):
         rospy.loginfo("Moving Forward")
-        self.move.linear.x = 0.5
+        self.move.linear.x = 1.0
         self.move.angular.z = 0
         self.pub.publish(self.move)
     
