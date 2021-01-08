@@ -1,0 +1,9 @@
+<launch>
+    <node
+        pkg = "path_exam"
+        type = "check_distance_action.py"
+        name = "node_check_distance_action"
+        output = "screen"
+    >
+    </node>
+</launch>

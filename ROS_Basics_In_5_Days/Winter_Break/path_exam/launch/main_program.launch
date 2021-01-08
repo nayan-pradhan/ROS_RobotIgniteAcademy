@@ -1,0 +1,10 @@
+<launch>
+  <include file="$(find path_exam)/launch/check_distance_action.launch"/>
+    <node
+        pkg = "path_exam"
+        type = "main_program.py"
+        name = "node_main_program"
+        output = "screen"
+    >
+    </node>
+</launch>

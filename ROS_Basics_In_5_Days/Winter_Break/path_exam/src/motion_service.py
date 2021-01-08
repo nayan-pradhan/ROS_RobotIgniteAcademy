@@ -39,7 +39,7 @@ def move_forward_func():
     # linear x controls forward (+1) and backword (-1)
     # linear y controls left (+1) and right (-1)
     # linear z controls up (+1) and down (-1)
-    move.linear.x = 1
+    move.linear.x = 0.5
     move.linear.y = 0
     move.linear.z = 0
     # angular z controls CCV(+1) and CV (-1)
