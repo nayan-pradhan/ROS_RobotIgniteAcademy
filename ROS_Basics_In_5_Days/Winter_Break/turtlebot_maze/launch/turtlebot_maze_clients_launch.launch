@@ -1,0 +1,9 @@
+<launch>
+    <node
+        pkg = "turtlebot_maze"
+        type = "turtlebot_maze_clients.py"
+        name = "node_turtlebot_clients"
+        output = "screen"
+    >
+    </node>
+</launch>
