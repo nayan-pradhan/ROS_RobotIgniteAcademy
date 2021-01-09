@@ -1,4 +1,6 @@
 <launch>
+<!-- ### OLD VERSION
+### PLEASE REFER TO NEW FILE: turtlebot_maze_project.py, turtlebot_maze_project_client.py -->
     <node
         pkg = "turtlebot_maze"
         type = "turtlebot_maze_action_server.py"

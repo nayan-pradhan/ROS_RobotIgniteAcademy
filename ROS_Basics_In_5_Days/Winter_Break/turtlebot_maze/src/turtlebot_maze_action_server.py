@@ -1,5 +1,8 @@
 #! /usr/bin/env python
 
+### OLD VERSION
+### PLEASE REFER TO NEW FILE: turtlebot_maze_project.py, turtlebot_maze_project_client.py
+
 import rospy
 import actionlib
 from turtlebot_maze.msg import MyTurtlebotMazeActionFeedback, MyTurtlebotMazeActionAction, MyTurtlebotMazeActionResult

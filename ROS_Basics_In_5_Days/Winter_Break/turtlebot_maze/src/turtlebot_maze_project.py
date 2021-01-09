@@ -25,13 +25,13 @@ class Maze(object):
         self.my_laser_sub = rospy.Subscriber("/kobuki/laser/scan", LaserScan, self.callback_laser)
         self.laser_msg = LaserScan()
 
+        # init service
+        self.my_service = rospy.Service("/turtlebot_maze_service_server", Trigger, self.callback_serv)
+        
         # init action
-        self._as = actionlib.SimpleActionServer("turtlebot_maze_action_server", MyTurtlebotMazeActionAction, self.as_goal_callback, False)
+        self._as = actionlib.SimpleActionServer("/turtlebot_maze_action_server", MyTurtlebotMazeActionAction, self.as_goal_callback, False)
         self._as.start()
 
-        # init service
-        self.my_service = rospy.Service("turtlebot_maze_service_server", Trigger, self.callback_serv)
-        
         # publisher
         self.pub = rospy.Publisher("/cmd_vel", Twist, queue_size = 1)
         while self.pub.get_num_connections() < 1:

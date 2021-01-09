@@ -1,0 +1,10 @@
+<launch>
+    <include file="$(find turtlebot_maze)/launch/turtlebot_maze_project_launch.launch"/>
+    <node
+        pkg = "turtlebot_maze"
+        type = "turtlebot_maze_project_client.py"
+        name = "node_turtlebot_maze_project_client"
+        output = "screen"
+    >
+    </node>
+</launch>

@@ -1,4 +1,6 @@
 <launch>
+<!-- ### OLD VERSION
+### PLEASE REFER TO NEW FILE: turtlebot_maze_project.py, turtlebot_maze_project_client.py -->
 <include file="$(find turtlebot_maze)/launch/turtlebot_maze_action_server_launch.launch"/>
     <node
         pkg = "turtlebot_maze"
