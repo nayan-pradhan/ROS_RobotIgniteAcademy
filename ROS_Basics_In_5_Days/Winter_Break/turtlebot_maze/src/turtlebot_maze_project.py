@@ -17,6 +17,9 @@ class Maze(object):
 
     def __init__(self):
 
+        global stop_prog 
+        self.stop_prog = False
+
         # odom subscriber
         self.my_Odom_Sub = rospy.Subscriber("/odom", Odometry, self.callback_odom)
         self.odom_msg = Odometry()
@@ -25,18 +28,18 @@ class Maze(object):
         self.my_laser_sub = rospy.Subscriber("/kobuki/laser/scan", LaserScan, self.callback_laser)
         self.laser_msg = LaserScan()
 
-        # init service
-        self.my_service = rospy.Service("/turtlebot_maze_service_server", Trigger, self.callback_serv)
-        
-        # init action
-        self._as = actionlib.SimpleActionServer("/turtlebot_maze_action_server", MyTurtlebotMazeActionAction, self.as_goal_callback, False)
-        self._as.start()
-
         # publisher
         self.pub = rospy.Publisher("/cmd_vel", Twist, queue_size = 1)
         while self.pub.get_num_connections() < 1:
             sleep(1)
         self.move = Twist()
+        
+        # init action
+        self._as = actionlib.SimpleActionServer("/turtlebot_maze_action_server", MyTurtlebotMazeActionAction, self.as_goal_callback, False)
+        self._as.start()
+
+        # init service
+        self.my_service = rospy.Service("/turtlebot_maze_service_server", Trigger, self.callback_serv)
     
     ###
 
@@ -44,7 +47,7 @@ class Maze(object):
         self.stop_prog = False
         self.success = False
         self._feedback = Empty()
-        self.total_time = 90
+        self.total_time = 120
         self.init_pos = self.get_odom()
         # print ("Initial x = ", self.init_pos.pose.pose.position.x)
         self._result.result_odom_array = []
