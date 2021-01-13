@@ -1,0 +1,9 @@
+<launch>
+<node
+    pkg = "turtle_tf_3d"
+    name = "publisher_of_tf_node"
+    type = "multiple_broadcaster.py"
+    output = "screen"
+    >
+</node>
+</launch>
